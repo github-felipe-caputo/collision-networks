@@ -1,10 +1,10 @@
 # collision-networks
-An implemention of a RESTful web server in Haskell for manipulation of "collision networks".
+An implementation of a RESTful web server in Haskell for manipulation of "collision networks".
 
 ## The Solution
 To solve the problem of checking for collisions of nodes on a big network I have modeled the solution using an undirected graph data structure and graph search algorithms.
 
-First the data structure. The input of the problem will always be collisions of nodes (in other words, edges), and they are alwyas undirected. To represent this data I decided to create a graph by using adjacency list. In other words something like this:
+First the data structure. The input of the problem will always be collisions of nodes (in other words, edges), and they are always undirected. To represent this data I decided to create a graph by using adjacency list. In other words something like this:
 
 ```shell
 1 | [2,4,7,8]
@@ -16,7 +16,7 @@ First the data structure. The input of the problem will always be collisions of 
 
 Which simply means "node 1 has edges to nodes 2,4,7,8", and so on. This approach takes O(E) space, as opposed to O(V^2) by using an adjacency matrix. So it's a pretty efficient representation. This adjacency list was implemented by using Haskell's Map data structure, where the 'key' is a node and the 'value' is a list of nodes the key is connected to.
 
-And finally, to check the collision I have simply implemented a Depth First Search algorithm to run on the graph, slightly modified to work on function languages and to use a 'source' looking for a 'goal'. The idea is that, since all the collisions are presented in an adjacency list it's possible we will have a disconnected graphu such as:
+And finally, to check the collision I have simply implemented a Depth First Search algorithm to run on the graph, slightly modified to work on function languages and to use a 'source' looking for a 'goal'. The idea is that, since all the collisions are presented in an adjacency list it's possible we will have a disconnected graph such as:
 
 ```shell
 1 | [2,3]
@@ -39,7 +39,7 @@ So we have actually two networks ([1,2,3] and [4,5]). So if we are looking to ch
 
 The solution was implemented on Haskell, and by using the web framework library Scotty for the RESTful server. To run it you'll need:
 
-- [Haskell Plataform](https://www.haskell.org/downloads): The GHC compiler plus Cabal for package management.
+- [Haskell Platform](https://www.haskell.org/downloads): The GHC compiler plus Cabal for package management.
 - [Scotty](https://hackage.haskell.org/package/scotty): A library for web frameworkds.
  
 After installing GHC and Cabal just run the following commands to install scotty.
@@ -61,7 +61,7 @@ To compile and run the server.
 ## Usage
 ### The server
 
-After compiling and running the `Server.hs` file, a web server will start running on `http://localhost:3000`, accessable by the browser normally. Ther server has 4 operations that can be run:
+After compiling and running the `Server.hs` file, a web server will start running on `http://localhost:3000`, accessible by the browser normally. The server has 4 operations that can be run:
 
 - `GET /printGraph` - `http://localhost:3000/printGraph`
 
