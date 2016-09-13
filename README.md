@@ -102,3 +102,39 @@ $ *CollisionNetworks> addEdgeToGraph 1 2 (addEdgeToGraph 1 3 (addEdgeToGraph 3 4
 fromList [(1,[2,3]),(2,[1]),(3,[1,4]),(4,[3])]
 ...
 ```
+
+## Example of running the code
+
+1. Using the terminal go to the folder with all the files and run
+
+```shell
+$ ghc -o Server Server.hs -Wall
+$ ./Server
+```
+
+This will start the server.
+
+2. In the browser go to `http://localhost:3000` and you will see the message
+
+`Collision Network Server`
+
+3. Now go to `http://localhost:3000/printGraph` and you will see the message
+
+`Graph is empty.`
+
+4. Now open another terminal and run:
+
+```shell
+$ curl -X POST http://localhost:3000/readFile/example.txt
+File read 'example.txt'.
+```
+
+5. In the browser go to `http://localhost:3000/printGraph` again and you'll see the graph.
+
+6. Now in the browser try `http://localhost:3000/checkCollision/0/33` and you will get
+
+`True`
+
+Because there is a path between nodes 0 and 33.
+
+7. On the otherminal you are running the server use the command `Ctrl+C` to end the excecution.
